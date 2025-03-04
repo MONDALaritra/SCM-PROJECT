@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en" th:replace="~{base :: parent(~{::#content}, ~{::title})}">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Services - Smart contect manager</title>
+</head>
+<body>
+    <section id="content">
+        <div class="mt-14">
+                
+
+            <section class="relative bg-cover bg-center bg-no-repeat h-80 flex items-center justify-center text-white"
+            style="background-image: url('https://media.istockphoto.com/id/1363583085/photo/smart-confidence-asian-female-startup-entrepreneur-small-business-owner-businesswoman-wear.jpg?s=612x612&w=0&k=20&c=Ss_uxZskvIZTiE8RrIAYsK8DbmO8hAke2UBu31AQt-Y=');">
+            
+                <!-- Dark Overlay -->
+                <div class="absolute inset-0 bg-black bg-opacity-50"></div>
+
+                <!-- Content -->
+                <div class="relative text-center px-6 md:px-12 max-w-2xl">
+                    <h1 class="text-3xl md:text-5xl font-bold mb-4">Our Services</h1>
+                    <p class="text-lg md:text-xl mb-6">Powerful features to help you manage contacts efficiently.</p>
+                    <a data-th-href="@{'/user/dashboard'}" class="bg-black dark:bg-blue-500 hover:bg-gray-800 text-white font-semibold py-3 px-6 rounded-lg shadow-lg transition">
+                        Get Started
+                    </a>
+                </div>
+            </section>
+
+            <!-- Services Section -->
+            <div class="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 px-6 py-12">
+                <!-- Service 1 -->
+                <div class="bg-white p-6 rounded-lg shadow-md text-center dark:bg-gray-700">
+                    <h3 class="text-xl font-bold text-black dark:text-white">🔒 Secure Contact Storage</h3>
+                    <p class="mt-2 text-gray-600 dark:text-white">Your contacts are stored with end-to-end encryption for maximum security.</p>
+                </div>
+                
+                <!-- Service 2 -->
+                <div class="bg-white p-6 rounded-lg shadow-md text-center dark:bg-gray-700">
+                    <h3 class="text-xl font-bold text-black dark:text-white">📱 Cross-Platform Access</h3>
+                    <p class="mt-2 text-gray-600 dark:text-white">Access your contacts anytime, from any device, with real-time sync.</p>
+                </div>
+
+                <!-- Service 3 -->
+                <div class="bg-white p-6 rounded-lg shadow-md text-center dark:bg-gray-700">
+                    <h3 class="text-xl font-bold text-black dark:text-white">📊 Smart Organization</h3>
+                    <p class="mt-2 text-gray-600 dark:text-white">Categorize, search, and filter contacts easily with AI-powered organization.</p>
+                </div>
+
+                <!-- Service 4 -->
+                <div class="bg-white p-6 rounded-lg shadow-md text-center dark:bg-gray-700">
+                    <h3 class="text-xl font-bold text-black dark:text-white">🔔 Instant Notifications</h3>
+                    <p class="mt-2 text-gray-600 dark:text-white">Get real-time updates on changes and activity in your contacts list.</p>
+                </div>
+
+                <!-- Service 5 -->
+                <div class="bg-white p-6 rounded-lg shadow-md text-center dark:bg-gray-700 ">
+                    <h3 class="text-xl font-bold text-black dark:text-white">🔗 Easy Contact Sharing</h3>
+                    <p class="mt-2 text-gray-600 dark:text-white">Share contact details securely with colleagues, friends, or family.</p>
+                </div>
+
+                <!-- Service 6 -->
+                <div class="bg-white p-6 rounded-lg shadow-md text-center dark:bg-gray-700">
+                    <h3 class="text-xl font-bold text-black dark:text-white"> 📧 Email Integration</h3>
+                    <p class="mt-2 text-gray-600 dark:text-white">Quickly call or email contacts directly from the app.</p>
+                </div>
+            </div>
+
+            <!-- Call to Action -->
+            <div class="text-center py-12">
+                <h3 class="text-2xl font-bold text-gray-800 dark:text-white">Get Started with Smart Contact Manager!</h3>
+                <a data-th-href="@{'/user/dashboard'}" class="mt-4 inline-block bg-black  dark:bg-blue-600 text-white font-semibold px-6 py-3 rounded-lg hover:bg-gray-700 dark:hover:bg-blue-700 transition">
+                    Try for Free
+                </a>
+            </div>
+        </div>
+        
+        
+    </section>
+
+    
+</body>
+</html>

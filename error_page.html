@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en" th:replace="~{base :: parent(~{::#content}, ~{::title})}">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Error - Smart contect manager</title>
+</head>
+<body>
+    <div id="content">
+        
+        <div class="mt-20 flex flex-col items-center justify-center ">
+            <div class="mt-20 block p-6 border-t-[10px] border-t-red-700 bg-white  rounded-xl shadow-sm hover:bg-gray-200 dark:bg-gray-800 dark:border-t-red-700 dark:hover:bg-gray-700">
+
+                <i class="fa-solid fa-circle-xmark ml-24 mt-10 mb-5" style="font-size:100px; color:red"></i>
+                <h2 class="text-red-700 font-semibold">Email not verified, something went wrong</h2>
+
+            </div>
+            
+
+        </div>
+    </div>
+
+    
+</body>
+</html>

@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en" th:replace="~{base :: parent(~{::#content}, ~{::title})}">  
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title data-th-text="${loggedinUser.name}+' | search- Smart contect manager'">profile- Smart contect manager</title>
+</head>
+<body>
+
+    <div id="content">
+
+        <!---sidebar-->
+         <!---if user is loggedin then sidebar-->
+         <div th:if="${loggedinUser}">
+            <div data-th-replace="~{user/sidebar::sidebar}"></div>
+        </div>
+        <div  class="sm:pl-64 pt-20">
+            <div class="flex justify-center flex-col items-center">
+                <h1 class="text-4xl font-semibold">Search Results</h1>
+                <p data-th-text="${pagecontacts.totalElements}+' results found '"></p>
+            </div>
+
+
+            <div class="contacts_container p-5" >
+                    
+
+                <div class="relative  overflow-x-auto shadow-md sm:rounded-lg">
+                    <div data-th-replace="~{message::messagebox}"></div>
+                    <form data-th-action="@{'/user/contacts/emailcontacts/search'}" data-th-object="${contactSearchForm}">
+    
+                        <div class="flex space-x-2 p-5 items-center justify flex-column flex-wrap md:flex-row space-y-4 md:space-y-0 pb-4 bg-white dark:bg-gray-900">
+                            <!--select box-->
+                            <div>
+                                
+                                <select data-th-field="*{field}" id="field" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 pr-10 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 cursor-pointer">
+                                    <option selected value="">Select Field</option>
+                                    <option value="name">Name</option>
+                                    <option value="phone">Phone</option>
+                                    <option value="email">Email</option>
+                                </select>
+                            </div>
+                            
+                            
+                            
+                            <!---search on table-->
+                            <label for="table-search" class="sr-only">Search</label>
+                            <div class="relative">
+                                <div class="absolute inset-y-0 rtl:inset-r-0 start-0 flex items-center ps-3 pointer-events-none">
+                                    <svg class="w-4 h-4 text-gray-500 dark:text-gray-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
+                                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z"/>
+                                    </svg>
+                                </div>
+                                <input data-th-field="*{keyword}" type="text" id="table-search-users" class="block p-2 ps-10 text-sm text-gray-900 border border-gray-300 rounded-lg w-80 bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Search for contacts">
+                            </div>
+    
+                            <button type="submit" class="px-3 py-2 bg-gray-800 text-white rounded w-20 h-9.5 dark:bg-blue-800">Search</button>
+                        </div>
+    
+    
+                    </form>
+                    
+                    
+                    <!--contact table-->
+                    
+                    
+                    <table data-th-unless="${pagecontacts.empty}" class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
+                        <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+                            <tr>
+                                
+                                <th scope="col" class="px-6 py-3">
+                                    Name
+                                </th>
+                                <th scope="col" class="px-6 py-3">
+                                    Phone Number
+                                </th>
+                                <th scope="col" class="px-6 py-3">
+                                    Links
+                                </th>
+                                <th scope="col" class="px-6 py-3">
+                                    Favourite
+                                </th>
+                                <th scope="col" class="px-6 py-3">
+                                    Gender
+                                </th>
+                                <th scope="col" class="px-6 py-3">
+                                    Compose Email
+                                </th>
+                                
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr data-th-object="${c}" data-th-each="c : ${pagecontacts.getContent()}" class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 border-gray-200 hover:bg-gray-50 dark:hover:bg-gray-600">
+                                
+                                <th scope="row" class="flex items-center px-6 py-4 text-gray-900 whitespace-nowrap dark:text-white">
+                                    <div data-th-if="*{gender}=='male'" class="flex items-center px-6 py-4 text-gray-900 whitespace-nowrap dark:text-white">
+                                        <img class="w-10 h-10 rounded-full" onerror="this.src='https://png.pngtree.com/png-vector/20231019/ourmid/pngtree-user-profile-avatar-png-image_10211467.png'" src="#" data-th-src="@{*{picture}}"  alt="Jese image">
+                                        <div class="ps-3">
+                                            <div class="text-base font-semibold" data-th-text="*{name}">Neil Sims</div>
+                                            <div class="font-normal text-gray-500" data-th-text="*{email}">neil.sims@flowbite.com</div>
+                                        </div>
+                                    </div>
+
+                                    <div data-th-if="*{gender}=='female'" class="flex items-center px-6 py-4 text-gray-900 whitespace-nowrap dark:text-white">
+                                        <img class="w-10 h-10 rounded-full" onerror="this.src='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTg_Eljgob-sraLE58jr_WfyZ_AM9rakoTYfA&s'" src="#" data-th-src="@{*{picture}}"  alt="Jese image">
+                                        <div class="ps-3">
+                                            <div class="text-base font-semibold" data-th-text="*{name}">Neil Sims</div>
+                                            <div class="font-normal text-gray-500" data-th-text="*{email}">neil.sims@flowbite.com</div>
+                                        </div>
+                                    </div>
+
+                                    <div data-th-if="*{gender}=='others'" class="flex items-center px-6 py-4 text-gray-900 whitespace-nowrap dark:text-white">
+                                        <img class="w-10 h-10 rounded-full" onerror="this.src='https://thumbs.dreamstime.com/b/silhouette-businessman-profile-vector-illustration-professional-use-features-male-view-characterized-its-dark-350590799.jpg'" src="#" data-th-src="@{*{picture}}"  alt="Jese image">
+                                        <div class="ps-3">
+                                            <div class="text-base font-semibold" data-th-text="*{name}">Neil Sims</div>
+                                            <div class="font-normal text-gray-500" data-th-text="*{email}">neil.sims@flowbite.com</div>
+                                        </div>
+                                    </div>
+                                    <div data-th-unless="*{gender}=='others'" >
+                                        <div data-th-unless="*{gender}=='male'">
+                                            <div data-th-unless="*{gender}=='female'" class="flex items-center px-6 py-4 text-gray-900 whitespace-nowrap dark:text-white">
+                                                <img class="w-10 h-10 rounded-full" onerror="this.src='https://www.shutterstock.com/image-vector/unknown-person-hidden-covered-masked-600nw-1552977773.jpg'" src="#" data-th-src="@{*{picture}}"  alt="Jese image">
+                                                <div class="ps-3">
+                                                    <div class="text-base font-semibold" data-th-text="*{name}">Neil Sims</div>
+                                                    <div class="font-normal text-gray-500" data-th-text="*{email}">neil.sims@flowbite.com</div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>  
+                                </th>
+                                <td class="px-6 py-4" >
+                                    <i class="fa-solid fa-phone"></i>
+                                    <span data-th-text="*{phone}"></span>
+                                </td>
+                                <td class="px-6 py-4">
+                                    <div class="flex items-center">
+    
+                                        <a data-th-href="@{*{websiteLink}}" target="_blank"><i class="fa-solid  mr-2 fa-link" style="font-size: 15px;"></i></a>
+    
+                                        <a data-th-href="@{*{linkedinlink}}" target="_blank"><i class="fa-brands fa-linkedin" style="font-size: 15px;"></i></a>
+                                    </div>
+                                </td>
+                                <td class="px-12">
+                                    <div data-th-if="*{favourite}">
+                                        <i class="fa-solid fa-heart" style="color:rgb(26, 230, 230); font-size:18px"></i>
+                                    </div>
+                                    <div data-th-unless="*{favourite}">
+                                        <i class="fa-solid fa-heart" style="font-size:18px"></i>
+                                    </div>
+                                </td>
+                                <td class="px-8">
+                                    <div data-th-if="*{gender}=='female'">
+                                        <span class="font-semibold">Female</span>
+                                    </div>
+                                    <div data-th-if="*{gender}=='male'">
+                                        <span class="font-semibold">Male</span>
+                                    </div>
+                                    <div data-th-if="*{gender}=='others'">
+                                        <span class="font-semibold">Other gender</span>
+                                    </div>
+                                    <div data-th-unless="*{gender}=='female'">
+                                        <div  data-th-unless="*{gender}=='male'">
+                                            <div  data-th-unless="*{gender}=='others'">
+                                                <span class="font-semibold">Not Known</span>
+                                            </div>
+                                        </div>
+                                        
+                                    </div>
+                                    
+                                </td>
+                                <td>
+                                   <div>
+                                    <a data-th-href="@{'/user/contacts/emailform/'+*{id}}"><i class="fa-solid fa-pen-to-square ml-14" style="font-size: 20px;"></i></a>
+                                        
+                                   </div>
+                                </td>
+                            </tr>
+                            
+                        </tbody>
+                    </table>
+                    <div data-th-if="${pagecontacts.empty}"> 
+                        <i class="fa-regular fa-face-frown flex items-center justify-center px-10 pt-10 pb-5" style="font-size: 120px;"></i>
+                        <h1 class="text-4xl font-semibold flex items-center justify-center pb-10" >No contacts found</h1>
+                        
+                    </div>
+    
+    
+                    <!--pagination component part-->
+    
+                   <div data-th-unless="${pagecontacts.empty}" class="pagination_container p-5 flex items-center justify-center ">   
+                        <nav aria-label="Page navigation example">
+                            <ul class="flex items-center -space-x-px h-10 text-base">
+                              <li data-th-unless="${pagecontacts.first}">
+                                <a data-th-href="@{'/user/contacts/emailcontacts/search?size='+${pageSize}+'&page='+${pagecontacts.number-1}+'&field='+${contactSearchForm.field}+'&keyword='+${contactSearchForm.keyword}}" class="flex items-center justify-center px-4 h-10 ms-0 leading-tight text-gray-500 bg-white border border-e-0 border-gray-300 rounded-s-lg hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">
+                                  <span class="sr-only">Previous</span>
+                                  <svg class="w-3 h-3 rtl:rotate-180" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 6 10">
+                                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 1 1 5l4 4"/>
+                                  </svg>
+                                </a>
+                              </li>
+                              <li data-th-each="index : ${#numbers.sequence(0,pagecontacts.totalPages-1)}">
+                                <a  data-th-href="@{'/user/contacts/emailcontacts/search?size='+${pageSize}+'&page='+${index}+'&field='+${contactSearchForm.field}+'&keyword='+${contactSearchForm.keyword}}" href="#" data-th-classappend="${index==pagecontacts.number?'bg-blue-200 dark:bg-gray-500' : 'bg-white dark:bg-gray-800'}" class="flex items-center justify-center px-4 h-10 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white"><span data-th-text="${index+1}"></span></a>
+                              </li>
+                              
+                              <li data-th-unless="${pagecontacts.last}">
+                                <a data-th-href="@{'/user/contacts/emailcontacts/search?size='+${pageSize}+'&page='+${pagecontacts.number+1}+'&field='+${contactSearchForm.field}+'&keyword='+${contactSearchForm.keyword}}" class="flex items-center justify-center px-4 h-10 leading-tight text-gray-500 bg-white border border-gray-300 rounded-e-lg hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">
+                                  <span class="sr-only">Next</span>
+                                  <svg class="w-3 h-3 rtl:rotate-180" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 6 10">
+                                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 9 4-4-4-4"/>
+                                  </svg>
+                                </a>
+                              </li>
+                            </ul>
+                          </nav>
+                    </div>
+                </div>
+    
+            </div>
+            <div data-th-replace="~{user/contact_modal::contact}"></div>
+        </div>
+
+
+        
+    </div>
+    
+    
+</body>
+</html>

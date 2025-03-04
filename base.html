@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en" class="light" xmlns:th="http://www.thymeleaf.org" th:fragment="parent(content,title)">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title data-th-replace="${title}">Smart contect manager</title>
+    <link rel="stylesheet" data-th-href="@{'/css/style.css'}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" data-th-href="@{'/css/output.css'}">
+    <link href="https://cdn.jsdelivr.net/npm/flowbite@3.1.1/dist/flowbite.min.css" rel="stylesheet" />
+    
+</head>
+<body class="text-black bg-gray-100 dark:bg-gray-900 dark:text-white">
+
+    <!--common header-->
+
+    <!--if user is logged in then navbar-->
+    <div th:if="${loggedinUser}">
+        <div data-th-replace="~{user/user_navbar::user-navbar}"></div>
+    </div>
+
+    <!---if user is not logged in then navbar-->
+    <div th:unless="${loggedinUser}">
+        <div data-th-replace="~{navbar :: navbar}"></div>
+    </div>
+    
+
+   
+    <!--main content-->
+
+
+
+    <div class="p-10">
+        <section data-th-replace="${content}"></section>
+    </div>
+    
+    
+
+
+    <!-- common footer
+    <footer class="bg-gray-800 text-white text-center py-4 mt-16 ">
+
+        <p>&copy; 2025 Smart Contact Manager. All Rights Reserved.</p>
+    </footer> -->
+    <script src="https://cdn.jsdelivr.net/npm/flowbite@3.1.1/dist/flowbite.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script data-th-src="@{'/js/updateprofile.js'}"></script>
+    <script data-th-src="@{'/js/contactpage.js'}"></script>
+    <script data-th-src="@{'/js/script.js'}"></script>
+    <script src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js" defer></script>
+    
+    <!--<th:block data-th-replace="${script}"></th:block>-->
+</body>
+</html>

@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en" th:replace="~{base :: parent(~{::#content}, ~{::title})}">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title data-th-text="${loggedinUser.name}+' | profile- Smart contect manager'">profile- Smart contect manager</title>
+</head> 
+<body>
+
+    <div id="content">
+
+        <!---sidebar-->
+         <!---if user is loggedin then sidebar-->
+        <div th:if="${loggedinUser}">
+            <div data-th-replace="~{user/sidebar::sidebar}"></div>
+        </div>
+
+        <div class="sm:pl-64 pt-12">
+            
+            
+            <div data-th-replace="~{message::messagebox}"></div>
+            
+
+
+            <div class="max-w-4xl mx-auto bg-white p-6 rounded-lg shadow-lg dark:bg-gray-800" >
+              <div class="flex flex-col items-center space-y-4">
+                  <!-- <img class="w-24 h-24 rounded-full border-4 border-blue-500" src="https://via.placeholder.com/100" alt="Profile Picture"> -->
+                  <img id="profileImage" onerror="this.src='data:image/jpeg;base64,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'" data-th-src="@{${loggedinUser.profilePic}}" alt="Profile" class="h-32 me-3 xl:h-48 rounded-full object-cover border-4 border-green-500">
+                  <h2 class="text-2xl font-semibold text-black dark:text-gray-200" data-th-text="${loggedinUser.name}">John Doe</h2>
+                  
+              </div>
+      
+              <div class="mt-6 grid grid-cols-1 md:grid-cols-2 gap-6">
+                  <div>
+                      <label class="block text-gray-600 dark:text-white">Phone</label>
+                      <p type="text" class="w-full mt-1 pl-5 p-2 rounded-lg bg-gray-50 text-black dark:text-white dark:bg-gray-700" data-th-text="${loggedinUser.phone}"></p>
+                  </div>
+                  <div>
+                      <label class="block text-gray-600 dark:text-white">Email</label>
+                      <p type="email" class="w-full mt-1 pl-5 p-2  rounded-lg bg-gray-50 text-black dark:text-white dark:bg-gray-700" data-th-text="${loggedinUser.email}"></p>
+                  </div>
+                  <div>
+                      <label class="block text-gray-600 dark:text-white">Password</label>
+                      <p type="password" class="w-full mt-1 pl-5 p-2 bg-gray-50 rounded-lg text-black dark:text-white dark:bg-gray-700">••••••••••••••••••••••••
+                        <span data-th-unless="${loggedinUser.password}=='password_google'">
+                            <span data-th-unless="${loggedinUser.password}=='password_github'">
+                                <a data-modal-target="authentication-modal" data-modal-toggle="authentication-modal" type="button" class="bg-transparent text-black hover:bg-gray-50 dark:bg-transparent dark:hover:bg-transparent dark:text-white px-3 py-2 rounded-lg ml-28 md:ml-36 lg:ml-44  cursor-pointer"><i class="fa-solid fa-keyboard"></i></a>
+                            </span> 
+                          </span>
+                      </p>  
+                      
+                    </div>
+                  <div>
+                      <label class="block text-gray-600 dark:text-white">Gender</label>
+                      <p type="text" class="w-full mt-1 pl-5 p-2 rounded-lg bg-gray-50 text-black dark:text-white dark:bg-gray-700" data-th-text="${loggedinUser.gender}"></p>
+                  </div>
+                  <div>
+                      <label class="block text-gray-600 dark:text-white">Email Verified</label>
+                      <span class="block mt-1 p-2 text-green-600"><i class="fa-solid fa-circle-check" style="color:green; font-size: 20px;"></i> Verified</span>
+                  </div>
+                  <div>
+                      <label class="block text-gray-600 dark:text-white">Account Enabled</label>
+                      <span class="block mt-1 p-2 text-green-600 "><i class="fa-solid fa-circle-check" style="color:green; font-size: 20px;"></i> Active</span>
+                  </div>
+              </div>
+      
+              <div class="mt-6">
+                  <label class="block text-gray-600 dark:text-white">About</label>
+                  <p class="w-full h-40 mt-1 pl-5 p-2 rounded-lg bg-gray-50 text-black dark:text-white dark:bg-gray-700" data-th-text="${loggedinUser.about}"></p>
+              </div>
+      
+              <div class="mt-6 text-center">
+                  <a data-th-href="@{'/user/edituser'}" type="button" class="bg-black hover:bg-gray-800 dark:bg-blue-500 dark:hover:bg-blue-700 text-white px-4 py-2 rounded-lg">Update Profile</a>
+                  <a th:onclick="deleteProfile([[${loggedinuserid}]])" type="button" class="bg-red-700 hover:bg-red-800  text-white px-4 py-2 rounded-lg ml-5 cursor-pointer">Delete Profile</a> 
+                  
+                </div>
+              
+          </div>
+
+          <div data-th-replace="~{user/passwordchange-modal::changepassword}"></div>
+          <div data-th-replace="~{user/verifyemail::emailverify}"></div>
+          
+        </div>
+
+    </div>
+   
+
+    
+</body>
+</html>

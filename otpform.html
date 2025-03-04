@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en" th:replace="~{base :: parent(~{::#content}, ~{::title})}">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title data-th-text="${loggedinUser.name}+' | OTP- Smart contect manager'">profile- Smart contect manager</title>
+</head> 
+<body>
+
+    <div id="content">
+
+        <!---sidebar-->
+         <!---if user is loggedin then sidebar-->
+        <div th:if="${loggedinUser}">
+            <div data-th-replace="~{user/sidebar::sidebar}"></div>
+        </div>
+
+        <div class="sm:pl-64 pt-12">
+            <div class="flex items-center justify-center mt-40 bg-gray-100 dark:bg-gray-900">
+                <div class="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-md w-full max-w-sm text-center">
+                    <h2 class="text-xl font-semibold mb-4">Enter OTP</h2>
+                    <div class="timer" id="countdown"></div>
+                    <i class="fa-solid fa-key text-gray-400 m-5" style="font-size: 50px;"></i>
+                    <form data-th-action="@{'/user/verifyotp'}" method="post">
+                        <div class="flex justify-center gap-2">
+                            <input type="text" maxlength="1" name="first" id="first" class="otp-input bg-white dark:bg-gray-600 w-12 h-12 text-center text-xl border rounded-md focus:ring-2 focus:ring-blue-500 outline-none" />
+                            <input type="text" maxlength="1" name="second" id="first" class="otp-input bg-white dark:bg-gray-600 w-12 h-12 text-center text-xl border rounded-md focus:ring-2 focus:ring-blue-500 outline-none" />
+                            <input type="text" maxlength="1" name="third" id="first" class="otp-input bg-white dark:bg-gray-600 w-12 h-12 text-center text-xl border rounded-md focus:ring-2 focus:ring-blue-500 outline-none" />
+                            <input type="text" maxlength="1" name="fourth" id="first" class="otp-input bg-white dark:bg-gray-600 w-12 h-12 text-center text-xl border rounded-md focus:ring-2 focus:ring-blue-500 outline-none" />
+                        </div>
+                        <button type="submit" class="mt-4 w-full bg-black hover:bg-gray-700 dark:bg-blue-600 text-white py-2 rounded-md dark:hover:bg-blue-700 transition">Verify</button>
+                    </form>
+                                
+                </div>
+            </div>
+               
+                        
+        </div>
+            
+    </div>
+
+    
+   
+
+    
+</body>
+</html>

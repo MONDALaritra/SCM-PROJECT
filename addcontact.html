@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en" th:replace="~{base :: parent(~{::#content}, ~{::title})}">  
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title data-th-text="${loggedinUser.name}+' | Add contact- Smart contect manager'">profile- Smart contect manager</title>
+</head>
+<body>
+
+    <div id="content">
+
+        <!---sidebar-->
+         <!---if user is loggedin then sidebar-->
+         <div th:if="${loggedinUser}">
+            <div data-th-replace="~{user/sidebar::sidebar}"></div>
+        </div>
+        <div  class="sm:pl-64 pt-20">
+            <div class="grid grid-cols-12">
+                <div class="col-span-3"></div>
+                <div class="col-span-12 md:col-span-6">
+                    
+                    <div class="card block  p-6 bg-white border border-gray-200 rounded-lg shadow-sm hover:bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:hover:bg-gray-700">
+                        <div data-th-replace="~{message::messagebox}"></div>
+                        <h1 class="text-2xl font-semibold">Add New Contact</h1>
+                        <p class="text-gray-400">This contact will be stored on cloud, you can directly email this client from scm....</p>
+                        
+                        <form data-th-action="@{'/user/contacts/add'}" data-th-object="${contactForm}" method="post" class="mt-5 mx-auto" enctype="multipart/form-data">
+                            <!--name input-->
+                            <label for="name" class="block mb-4 text-sm font-medium text-gray-900 dark:text-white">Contact Name</label>
+                            <div class="flex">
+                                <span class="inline-flex items-center px-3 text-sm text-gray-900 bg-gray-200 border border-e-0 border-gray-300 rounded-s-md dark:bg-gray-600 dark:text-gray-400 dark:border-gray-600">
+                                <!-- <svg class="w-4 h-4 text-gray-500 dark:text-gray-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
+                                    <path d="M10 0a10 10 0 1 0 10 10A10.011 10.011 0 0 0 10 0Zm0 5a3 3 0 1 1 0 6 3 3 0 0 1 0-6Zm0 13a8.949 8.949 0 0 1-4.951-1.488A3.987 3.987 0 0 1 9 13h2a3.987 3.987 0 0 1 3.951 3.512A8.949 8.949 0 0 1 10 18Z"/>
+                                </svg> -->
+                                <i class="fa-solid fa-address-book" style="font-size: 20px;"></i>
+                                </span>
+                                <input data-th-field="*{name}" type="text" id="name" class="rounded-none rounded-e-lg bg-gray-50 border border-gray-300 text-gray-900 focus:ring-blue-500 focus:border-blue-500 block flex-1 min-w-0 w-full text-sm p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Enter here">
+                            </div>
+                            <p class="text-red-500 mt-2" data-th-if="${#fields.hasErrors('name')}" data-th-errors="*{name}"></p>
+                            <!--email input-->
+                            <label for="email" class="block mb-4 mt-4 text-sm font-medium text-gray-900 dark:text-white">Contact Email</label>
+                            <div class="flex">
+                                <span class="inline-flex items-center px-3 text-sm text-gray-900 bg-gray-200 border border-e-0 border-gray-300 rounded-s-md dark:bg-gray-600 dark:text-gray-400 dark:border-gray-600">
+                                <!-- <svg class="w-4 h-4 text-gray-500 dark:text-gray-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
+                                    <path d="M10 0a10 10 0 1 0 10 10A10.011 10.011 0 0 0 10 0Zm0 5a3 3 0 1 1 0 6 3 3 0 0 1 0-6Zm0 13a8.949 8.949 0 0 1-4.951-1.488A3.987 3.987 0 0 1 9 13h2a3.987 3.987 0 0 1 3.951 3.512A8.949 8.949 0 0 1 10 18Z"/>
+                                </svg> -->
+                                <i class="fa-solid fa-envelope" style="font-size: 20px;"></i>
+                                </span>
+                                <input data-th-field="*{email}" type="email" id="email" class="rounded-none rounded-e-lg bg-gray-50 border border-gray-300 text-gray-900 focus:ring-blue-500 focus:border-blue-500 block flex-1 min-w-0 w-full text-sm p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Enter here">
+                            </div>
+                            <p class="text-red-500 mt-2" data-th-if="${#fields.hasErrors('email')}" data-th-errors="*{email}"></p>
+
+                             <!--phone input-->
+                             <label for="phone" class="block mb-4 mt-4 text-sm font-medium text-gray-900 dark:text-white">Contact Phone number</label>
+                             <div class="flex">
+                                 <span class="inline-flex items-center px-3 text-sm text-gray-900 bg-gray-200 border border-e-0 border-gray-300 rounded-s-md dark:bg-gray-600 dark:text-gray-400 dark:border-gray-600">
+                                 <!-- <svg class="w-4 h-4 text-gray-500 dark:text-gray-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
+                                     <path d="M10 0a10 10 0 1 0 10 10A10.011 10.011 0 0 0 10 0Zm0 5a3 3 0 1 1 0 6 3 3 0 0 1 0-6Zm0 13a8.949 8.949 0 0 1-4.951-1.488A3.987 3.987 0 0 1 9 13h2a3.987 3.987 0 0 1 3.951 3.512A8.949 8.949 0 0 1 10 18Z"/>
+                                 </svg> -->
+                                 <i class="fa-solid fa-phone-volume" style="font-size: 20px;"></i>
+                                 </span>
+                                 <input data-th-field="*{phone}" type="number" id="phone" class="rounded-none rounded-e-lg bg-gray-50 border border-gray-300 text-gray-900 focus:ring-blue-500 focus:border-blue-500 block flex-1 min-w-0 w-full text-sm p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Enter here">
+                             </div>
+                             <p class="text-red-500 mt-2" data-th-if="${#fields.hasErrors('phone')}" data-th-errors="*{phone}"></p>
+
+                             <!--address input-->
+                             <div class="mt-4">
+                                
+                                <label for="address" class="block mb-3 text-sm font-medium text-gray-900 dark:text-white">Contact Address</label>
+                                <textarea data-th-field="*{address}" id="address" rows="4" class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Write the address of this contact here..."></textarea>
+
+                             </div>
+                             <p class="text-red-500 mt-2" data-th-if="${#fields.hasErrors('address')}" data-th-errors="*{address}"></p>
+
+                             <!--description input-->
+                             <div class="mt-4">
+                                
+                                <label for="description" class="block mb-3 text-sm font-medium text-gray-900 dark:text-white">Contact Description</label>
+                                <textarea data-th-field="*{description}" id="description" rows="4" class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Write any details this contact here..."></textarea>
+
+                             </div>
+                             <!--gender input-->
+                             <div class="mt-5 flex">
+                                <p class="mr-10 text-sm font-medium text-gray-900 dark:text-white">Select Gender</p>
+                                <div class="flex items-center me-4 ml-5">
+                                    <input data-th-field="*{gender}" id="male" type="radio" value="male" name="colored-radio" class="w-4 h-4 text-teal-600 bg-gray-300 border-gray-300 focus:ring-teal-500 dark:focus:ring-teal-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-900 dark:border-gray-600 cursor-pointer">
+                                    <label for="male" class="ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">Male</label>
+                                </div>
+                                <div class="flex items-center me-4">
+                                    <input data-th-field="*{gender}" id="female" type="radio" value="female" name="colored-radio" class="w-4 h-4 text-teal-600 bg-gray-300 border-gray-300 focus:ring-teal-500 dark:focus:ring-teal-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-900 dark:border-gray-600 cursor-pointer">
+                                    <label for="female" class="ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">Female</label>
+                                </div>
+                                <div class="flex items-center me-4">
+                                    <input data-th-field="*{gender}" id="others" type="radio" value="others" name="colored-radio" class="w-4 h-4 text-teal-600 bg-gray-300 border-gray-300 focus:ring-teal-500 dark:focus:ring-teal-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-900 dark:border-gray-600 cursor-pointer">
+                                    <label for="others" class="ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">Others</label>
+                                </div>
+
+                             </div>
+
+                             <!--social links-->
+                             <div class="flex gap-4">
+                                <div class="w-full">
+                                    
+                                    <div class="flex mt-5">
+                                        <span class="inline-flex items-center px-3 text-sm text-gray-900 bg-gray-200 border border-e-0 border-gray-300 rounded-s-md dark:bg-gray-600 dark:text-gray-400 dark:border-gray-600">
+                                        <!-- <svg class="w-4 h-4 text-gray-500 dark:text-gray-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
+                                            <path d="M10 0a10 10 0 1 0 10 10A10.011 10.011 0 0 0 10 0Zm0 5a3 3 0 1 1 0 6 3 3 0 0 1 0-6Zm0 13a8.949 8.949 0 0 1-4.951-1.488A3.987 3.987 0 0 1 9 13h2a3.987 3.987 0 0 1 3.951 3.512A8.949 8.949 0 0 1 10 18Z"/>
+                                        </svg> -->
+                                        <i class="fa-solid fa-globe" style="font-size: 20px;"></i>
+                                        </span>
+                                        <input data-th-field="*{websiteLink}" type="text" id="website-link" class="rounded-none rounded-e-lg bg-gray-50 border border-gray-300 text-gray-900 focus:ring-blue-500 focus:border-blue-500 block flex-1 min-w-0 w-full text-sm p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="http://lovecoding.com/">
+                                    </div>
+                                </div>
+                                <div class="w-full">
+
+                                    
+                                    <div class="flex mt-5">
+                                        <span class="inline-flex items-center px-3 text-sm text-gray-900 bg-gray-200 border border-e-0 border-gray-300 rounded-s-md dark:bg-gray-600 dark:text-gray-400 dark:border-gray-600">
+                                        <!-- <svg class="w-4 h-4 text-gray-500 dark:text-gray-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
+                                            <path d="M10 0a10 10 0 1 0 10 10A10.011 10.011 0 0 0 10 0Zm0 5a3 3 0 1 1 0 6 3 3 0 0 1 0-6Zm0 13a8.949 8.949 0 0 1-4.951-1.488A3.987 3.987 0 0 1 9 13h2a3.987 3.987 0 0 1 3.951 3.512A8.949 8.949 0 0 1 10 18Z"/>
+                                        </svg> -->
+                                        <i class="fa-brands fa-linkedin" style="font-size: 20px;"></i>
+                                        </span>
+                                        <input data-th-field="*{linkedinlink}" type="text" id="linkedin-link" class="rounded-none rounded-e-lg bg-gray-50 border border-gray-300 text-gray-900 focus:ring-blue-500 focus:border-blue-500 block flex-1 min-w-0 w-full text-sm p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="http://linkedin.com/">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!--favourite checkbox-->
+                            <div class="flex items-center mt-5 mb-4 ml-1">
+                                <input  data-th-field="*{favourite}" type="checkbox" value="" class="cursor-pointer w-5 h-5 text-blue-600 bg-gray-300 border-black rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-900 dark:border-gray-600">
+                                <label for="default-checkbox" class="ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">Is this contact your favourite one?</label>
+                            </div>
+
+                            <!--picture field-->
+                            
+                            <div class="flex items-center justify-center w-full mt-5 mb-3">
+                                <label for="contact_picture" class="flex flex-col items-center justify-center w-full h-50 border-2 border-gray-300 border-dashed rounded-lg cursor-pointer bg-gray-50 dark:hover:bg-gray-800 dark:bg-gray-700 hover:bg-gray-100 dark:border-gray-600 dark:hover:border-gray-500">
+                                    <div class="flex flex-col items-center justify-center pt-5 pb-6">
+                                        <svg class="w-8 h-8 mb-4 text-gray-500 dark:text-gray-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 16">
+                                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 13h3a3 3 0 0 0 0-6h-.025A5.56 5.56 0 0 0 16 6.5 5.5 5.5 0 0 0 5.207 5.021C5.137 5.017 5.071 5 5 5a4 4 0 0 0 0 8h2.167M10 15V6m0 0L8 8m2-2 2 2"/>
+                                        </svg>
+                                        <p class="mb-2 text-sm text-gray-500 dark:text-gray-400"><span class="font-semibold">Click to upload pircture of contact </span> or drag and drop</p>
+                                        <p class="text-xs text-gray-500 dark:text-gray-400">SVG, PNG, JPG or GIF (MAX. 800x400px)</p>
+                                    </div>
+                                    <input data-th-field="*{contactImage}" id="contact_picture" type="file" class="hidden" />
+                                </label>
+                            </div>
+                            <p class="text-red-500 mt-2" data-th-if="${#fields.hasErrors('contactImage')}" data-th-errors="*{contactImage}"></p>
+                            <!--image preview-->
+                            <div>
+                                <img class="max-h-52 mx-auto rounded-lg shadow m-3" src="" alt="" id="upload_contact_image_preview">
+
+                            </div>
+
+
+                            <div class="button_container text-center mt-5">
+                                <button type="submit" class="px-3 py-2 dark:bg-blue-600 hover:dark:bg-blue-700 rounded bg-black text-white">Add Contact</button>
+                                <button type="reset" class="ml-5 px-3 py-2 rounded dark:bg-blue-600 hover:dark:bg-blue-700 bg-black text-white">Reset</button>
+                            </div>
+                        </form>  
+                    </div>
+                    
+                </div>
+                
+                
+                
+            </div>
+            
+        </div>
+    </div>
+    
+    
+</body>
+</html>

@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en" th:replace="~{base :: parent(~{::#content}, ~{::title})}">  
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title data-th-text="${loggedinUser.name}+' | Male Contacts- Smart contect manager'"></title>
+</head>
+<body>
+
+    <div id="content">
+
+        <!---sidebar-->
+         <!---if user is loggedin then sidebar-->
+         <div th:if="${loggedinUser}">
+            <div data-th-replace="~{user/sidebar::sidebar}"></div>
+        </div>
+        <div  class="sm:pl-64 pt-20">
+
+            <div data-th-replace="~{message::messagebox}"></div>
+           
+            <div class="max-w-3xl mx-auto bg-white p-6 rounded-lg shadow-lg dark:bg-gray-800">
+                <h2 class="text-xl font-bold mb-4">Compose Email</h2>
+                <div class="flex flex-col items-center space-y-4">
+                    <img id="contactImage" onerror="this.src='https://media.istockphoto.com/id/1327592506/vector/default-avatar-photo-placeholder-icon-grey-profile-picture-business-man.jpg?s=612x612&w=0&k=20&c=BpR0FVaEa5F24GIw7K8nMWiiGmbb8qmhfkpXcp1dhQg='" data-th-src="@{${contactdetails.picture}}" alt="contact-pic" class="h-32 me-3 xl:h-48 rounded-full object-cover">
+                </div>
+                
+                <form  id="emailForm" data-th-object="${contactdetails}" data-th-action="@{'/user/emails/send/'+*{id}}" method="post" enctype="multipart/form-data">
+                    
+                    <label class="block mb-2">To:</label>
+                    <input type="email" id="to" name="to" required class="w-full p-2 border rounded mb-4 bg-gray-50 dark:bg-gray-700 focus:border-blue-600" data-th-field="*{email}">
+                    
+                    <label class="block mb-2">Subject:</label>
+                    <input type="text" id="subject" name="subject" class="w-full p-2 border rounded mb-4 bg-gray-50 dark:bg-gray-700 focus:border-blue-600">
+                    
+                    <label class="block mb-2">Body:</label>
+                    <textarea id="message" name="message" class="w-full p-2 border rounded bg-gray-50 dark:bg-gray-700 focus:border-blue-600" rows="12"></textarea>
+                    
+                    <label class="block mt-4 mb-4">Attachments:</label>
+                    <input type="file" id="files" name="files" multiple class="mb-4 w-full">
+                    
+                    <div class="mt-4 flex justify-center items-center space-x-5">
+                        <button type="submit" class="bg-black dark:bg-blue-500 text-white px-4 py-2 rounded" onclick="sendEmail()">Send</button>
+                        <button type="button" class="bg-gray-300 dark:bg-gray-600 px-4 py-2 rounded" onclick="clearForm()">Clear</button>
+                    </div>
+                </form>
+            </div>
+        
+            <script>
+                CKEDITOR.replace('body');
+        
+                function sendEmail() {
+                    const to = document.getElementById('to').value;
+                    const subject = document.getElementById('subject').value;
+                    const body = CKEDITOR.instances.body.getData();
+                    
+                    if (!to || !subject || !body) {
+                        alert('Please fill in all fields');
+                        return;
+                    }
+                    
+                    
+                }
+                
+                function clearForm() {
+                    document.getElementById('emailForm').reset();
+                    CKEDITOR.instances.body.setData('');
+                }
+            </script>
+           
+
+            
+            
+        </div>      
+
+       
+    </div>
