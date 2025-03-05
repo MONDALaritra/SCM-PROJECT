@@ -80,16 +80,28 @@ CONCLUSION:
 
 The Smart Contact Manager is an efficient and secure solution for organizing, managing, and accessing contacts seamlessly. With features like cloud storage, advanced search, and integration with communication tools, it enhances productivity for both individuals and businesses. Future advancements in AI, security, and automation will further improve its functionality, making contact management smarter and more intuitive.
 
-SNAPS OF PROJECT:
+LIVE DEMO OF PROJECT:
+
+IN THIS VIDEO THE HOME, SERVICES AND CONTACT US FEATURES ARE SHOWN IN THIS WEBSITE:
 
 
-![Screenshot 2025-03-02 154001](https://github.com/user-attachments/assets/f3f15fd0-b1c9-4734-a7f9-dcb13a4a283e) 
-![Screenshot 2025-03-02 154059](https://github.com/user-attachments/assets/eba575ce-0eb5-4a98-bf0a-b1c8f4a50d4a)
-![Screenshot 2025-03-02 154551](https://github.com/user-attachments/assets/6cf4823c-8b46-48a1-9c93-89bcca70d26c)
+https://github.com/user-attachments/assets/c9b04c2b-6701-4a29-91fe-8eaa46f169b3
 
-![Screenshot 2025-03-02 162111](https://github.com/user-attachments/assets/2c20bbe6-261c-4194-a132-29e746cd0059)
-![Screenshot 2025-03-02 163921](https://github.com/user-attachments/assets/93321922-7999-4d4a-8b0a-f2bc1e4a1dcd)
-![Screenshot 2025-03-02 164506](https://github.com/user-attachments/assets/3b39ec62-e1cf-4127-8f07-82fca851e529)
+LOGIN  MANUALLY OR BY USING GOOGLE OR GEETHUB IS SHOWN IN THIS VIDEO:
+
+
+
+https://github.com/user-attachments/assets/47fc432d-39d5-4968-9854-09b6ff68ae25
+
+THIS VIDEO CONTAINS A VERY IMPORTANT FEATURE WHICH IS ANY USER CAN CHANGE HIS PASSWORD IF HE CAN REMEMBER HIS OLD PASSWORD, IF USER FORGET THE PASSWORD THEN HE  CAN SEND OTP TO HIS REGISTERED EMAIL ADDRESS AND BY USING THAT OTP THEY CAN VERIFY THEMSELVES AND CHANGE THE NEW PASSWORD.
+
+
+
+https://github.com/user-attachments/assets/3a4e82db-c289-4c8d-8cd1-69467366f3c4
+
+
+
+
 
 HERE IS THE DEMO HOW YOU CAN SEND EMAIL TO YOUR DESIRED CONTACT:
 
