@@ -41,6 +41,8 @@ public interface ContactService {
     // Page<Contacts> getFavContacts(User user, Pageable pageable);
     Contacts getByEmail(String email);
     Contacts getByPhone(String phone);
-    
+    Contacts getByUserAndEmail(User user, String email);
+    Contacts getByUserAndPhone(User user, String phone);
+
 
 }
