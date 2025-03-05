@@ -57,14 +57,6 @@ public class ContactController {
     public String addContactView(Model m){
         ContactForm contactForm = new ContactForm();
         m.addAttribute("contactForm", contactForm);
-        // contactForm.setName("Aritra Mondal");
-        // contactForm.setEmail("Aritra Mondal");
-        // contactForm.setPhone("8101017099");
-        // contactForm.setAddress("Aritra Mondal");
-        // contactForm.setDescription("Aritra Mondal");
-        // contactForm.setWebsiteLink("Aritra Mondal");
-        // contactForm.setLinkedinlink("Aritra Mondal");
-        // contactForm.setFavourite(true);
         return "user/addcontact";
     }
 
@@ -85,10 +77,10 @@ public class ContactController {
         User user = userService.getUserByEmail(username);
 
         //picture process
-        //logger.info("file information: {}", contactForm.getContactImage().getOriginalFilename());
+        
         //code for upload image
-        Contacts contact1 = contactService.getByEmail(contactForm.getEmail());
-        Contacts contact2 = contactService.getByPhone(contactForm.getPhone());
+        Contacts contact1 = contactService.getByUserAndEmail(user,contactForm.getEmail());
+        Contacts contact2 = contactService.getByUserAndPhone(user,contactForm.getPhone());
         if(contact1==null && contact2==null){
             Contacts contact = new Contacts();
             contact.setName(contactForm.getName());
