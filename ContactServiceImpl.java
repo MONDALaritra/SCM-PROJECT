@@ -135,13 +135,16 @@ public class ContactServiceImpl implements ContactService{
         return contactRepository.findByPhone(phone);
     }
 
-    // @Override
-    // public Page<Contacts> getFavContacts(User user, Pageable pageable,ContactForm contactForm) {
-    //     if(contactForm.isFavourite()){
-    //         return contactRepository.findByUser(user, pageable);
-    //     }
-    //     return null;
-    // }
+    @Override
+    public Contacts getByUserAndEmail(User user, String email) {
+        return contactRepository.findByUserAndEmail(user, email);
+    }
+
+    @Override
+    public Contacts getByUserAndPhone(User user, String phone) {
+        return contactRepository.findByUserAndPhone(user, phone);
+    }
+    
 
     
 
