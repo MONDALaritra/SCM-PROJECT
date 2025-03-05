@@ -43,4 +43,8 @@ public interface ContactRepository extends JpaRepository<Contacts,String>{
     Contacts findByEmail(String email);
 
     Contacts findByPhone(String phone);
+
+    Contacts findByUserAndEmail(User user, String email);
+
+    Contacts findByUserAndPhone(User user, String phone);
 }
